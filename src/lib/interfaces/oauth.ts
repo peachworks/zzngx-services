@@ -1,6 +1,6 @@
 export interface OAuth {
-    app_tokens?: string;
+    app_tokens?: {[appKey: string]: string};
     access_token: string;
     expires_in: number;
-    refesh_token: string;
+    refresh_token: string;
 }

@@ -15,6 +15,7 @@ describe('BeyondSessionService', () => {
         });
 
         sessionService = TestBed.get(BeyondSessionService);
+        expect(sessionService).toBeDefined();
         return done();
     });
     it('#getActiveAccount should return account id', done => {
