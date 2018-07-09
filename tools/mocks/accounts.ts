@@ -1,9 +1,9 @@
 let mocks = {};
 
 mocks['/alerts'] = {
-  type: 'alerts',
-  count: 1,
-  results:
+    type: 'alerts',
+    count: 1,
+    results:
     [
         {
             id: 91,
@@ -33,7 +33,7 @@ mocks['/day_parts'] = {
                 name: 'New Brunch',
                 position: 0,
                 parts: [
-                    { day: 'Monday', start_time: '09:00:00', end_time:' 14:00:00' },
+                    { day: 'Monday', start_time: '09:00:00', end_time: '14:00:00' },
                     { day: 'Tuesday', start_time: '09:00:00', end_time: '14:00:00' }
                 ],
                 created_at: '2012-08-03 15:00:00',
@@ -101,55 +101,55 @@ mocks['/employees'] = {
 };
 
 mocks['/users/me/simplified'] = {
-  user: {
-    id: 44,
-    email: 'peachdev@peachworks.com',
-    first_name: 'Peach',
-    last_name: 'Dev',
-    created_by: 37,
-    updated_by: 44,
-    profile_pic: 's3.amazonaws.com/production_user_icons/k89PG8o/44.png',
-    profile_pic_big: 's3.amazonaws.com/production_user_icons/k89PG8o/big-44.png',
-    mobile_phone: '+48664788067',
-    job_title: 'Title',
-    location: 'Peachville',
-    birthday: 'August,1',
-    about: 'about me goes here\nold phone +380962848093',
-    public_email: 'peachdev@peachworks.com',
-    public_mobile_phone: '+48664788067',
-    last_login: '2015-01-07T20:41:06.999Z',
-    created_at: '2013-01-29T01:06:20.270Z',
-    updated_at: '2015-01-07T20:41:07.006Z'
-  }
+    user: {
+        id: 44,
+        email: 'peachdev@peachworks.com',
+        first_name: 'Peach',
+        last_name: 'Dev',
+        created_by: 37,
+        updated_by: 44,
+        profile_pic: 's3.amazonaws.com/production_user_icons/k89PG8o/44.png',
+        profile_pic_big: 's3.amazonaws.com/production_user_icons/k89PG8o/big-44.png',
+        mobile_phone: '+48664788067',
+        job_title: 'Title',
+        location: 'Peachville',
+        birthday: 'August,1',
+        about: 'about me goes here\nold phone +380962848093',
+        public_email: 'peachdev@peachworks.com',
+        public_mobile_phone: '+48664788067',
+        last_login: '2015-01-07T20:41:06.999Z',
+        created_at: '2013-01-29T01:06:20.270Z',
+        updated_at: '2015-01-07T20:41:07.006Z'
+    }
 };
 
 mocks['/jobs'] = {
-  type: 'jobs',
-  count: 2,
-  params: {},
-  results:
-      [
-        {
-          id: 81,
-          name: 'Busser',
-          code: 'BUS',
-          is_deleted: false,
-          created_at: '2012-05-30 10:34:01',
-          created_by: 78,
-          updated_at: '2012-05-30 10:34:01',
-          updated_by: 78
-        },
-        {
-          id: 89,
-          name: 'Line Cook',
-          code: null,
-          is_deleted: false,
-          created_at: '2012-05-30 10:34:01',
-          created_by: 78,
-          updated_at: '2012-05-30 10:34:01',
-          updated_by: 78
-        }
-      ]
+    type: 'jobs',
+    count: 2,
+    params: {},
+    results:
+        [
+            {
+            id: 81,
+            name: 'Busser',
+            code: 'BUS',
+            is_deleted: false,
+            created_at: '2012-05-30 10:34:01',
+            created_by: 78,
+            updated_at: '2012-05-30 10:34:01',
+            updated_by: 78
+            },
+            {
+            id: 89,
+            name: 'Line Cook',
+            code: null,
+            is_deleted: false,
+            created_at: '2012-05-30 10:34:01',
+            created_by: 78,
+            updated_at: '2012-05-30 10:34:01',
+            updated_by: 78
+            }
+        ]
 };
 
 mocks['/locations'] = {
@@ -162,7 +162,7 @@ mocks['/locations'] = {
                 id: 91,
                 name: 'Chicago #5',
                 merchant_id: 973308773102544,
-                number: '4532', 
+                number: '4532',
                 timezone: '',
                 address1: '',
                 address2: '',
@@ -179,7 +179,7 @@ mocks['/locations'] = {
                 created_by: 101,
                 updated_at: '2012-08-05 13:10:21',
                 updated_by: 101
-              }
+            }
         ]
 };
 
@@ -230,8 +230,8 @@ mocks['/roles'] = {
                 created_by: 78,
                 updated_at: '2012-05-30 10:34:01',
                 updated_by: 78
-              },
-              {
+            },
+            {
                 id: 89,
                 name: 'Employees',
                 description: 'For hourly employees',
@@ -243,7 +243,7 @@ mocks['/roles'] = {
                 created_by: 78,
                 updated_at: '2012-05-31 12:24:11',
                 updated_by: 78
-              }
+            }
         ]
 };
 
@@ -270,8 +270,8 @@ mocks['/users'] = {
                 public_mobile_phone: null,
                 created_at: '2012-01-19 12:04:51',
                 updated_at: '2012-01-19 12:04:51'
-              },
-              {
+            },
+            {
                 id: 309,
                 verified: true,
                 email: 'ssmith@google.com',
@@ -288,7 +288,7 @@ mocks['/users'] = {
                 public_mobile_phone: null,
                 created_at: '2012-01-19 12:04:51',
                 updated_at: '2012-01-19 12:04:51'
-              }
+            }
         ]
 };
 
