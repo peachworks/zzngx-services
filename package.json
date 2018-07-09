@@ -1,0 +1,49 @@
+{
+  "name": "@getbeyond/ngx-services",
+  "version": "6.0.0",
+  "license": "MIT",
+  "description": "Beyond One Services for Angular 6",
+  "homepage": "https://github.com/getbeyond/ngx-services",
+  "bugs": "https://github.com/getbeyond/ngx-services/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/getbeyond/ngx-services.git"
+  },
+  "scripts": {
+    "build": "npm run test && node tools/build",
+    "docs": "compodoc src -s -p tsconfig.json --hideGenerator --theme 'postmark'",
+    "lint": "tslint --project tsconfig.json 'src/**/*.ts'",
+    "lint:fix": "tslint --fix --project tsconfig.json 'src/**/*.ts'",
+    "test": "npm run lint && npm run test:unit",
+    "test:unit": "jest",
+    "test:unit:watch": "jest --watch"
+  },
+  "contributors": [
+    "Kacper Polak <kpolak@peachworks.com> (https://github.com/kacepe)"
+  ],
+  "dependencies": {
+    "@angular/common": "^6.0.0",
+    "@angular/compiler": "^6.0.0",
+    "@angular/core": "^6.0.0",
+    "@angular/platform-browser": "^6.0.0",
+    "@getbeyond/beyond-js": "^1.0.3",
+    "lodash": "^4.17.10",
+    "rxjs": "^6.0.0",
+    "zone.js": "^0.8.26"
+  },
+  "devDependencies": {
+    "@angular/compiler-cli": "^6.0.7",
+    "@angular/platform-browser-dynamic": "6.0.7",
+    "@compodoc/compodoc": "^1.1.3",
+    "@types/jest": "^23.1.4",
+    "@types/lodash": "^4.14.110",
+    "codelyzer": "^4.4.2",
+    "jest": "^22.4.4",
+    "jest-fetch-mock": "^1.6.5",
+    "jest-localstorage-mock": "^2.2.0",
+    "jest-preset-angular": "^5.2.3",
+    "ng-packagr": "^3.0.3",
+    "tslint": "^5.10.0",
+    "typescript": "2.7.x"
+  }
+}
