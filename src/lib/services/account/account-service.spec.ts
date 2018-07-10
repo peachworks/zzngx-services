@@ -148,7 +148,7 @@ describe('BeyondAccountService', () => {
                 );
         });
 
-        it('#getInfo should return array of accounts from observable', done => {
+        it('#getInfo should return user info from observable', done => {
             fetchMock.once(accountsMocks['/users/me/simplified']);
             accountService.getInfo()
                 .subscribe(

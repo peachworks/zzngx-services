@@ -1,4 +1,3 @@
-export * from './account_pref';
 export * from './account';
 export * from './alert';
 export * from './collection';
@@ -9,5 +8,7 @@ export * from './employee';
 export * from './job';
 export * from './location';
 export * from './oauth';
+export * from './pref';
 export * from './role';
+export * from './user_alert_pref';
 export * from './user';
