@@ -1,18 +1,18 @@
 export interface User {
-  id: number;
-  verified: boolean;
-  email: string;
-  first_name: string;
-  last_name: string;
-  profile_pic: string;
-  profile_pic_big: string;
-  last_login: string;
-  job_title?: any;
-  location?: any;
-  birthday?: any;
-  about?: any;
-  public_email?: any;
+  readonly id?: number;
+  readonly verified?: boolean;
+  email?: string;
+  first_name?: string;
+  last_name?: string;
+  profile_pic?: string;
+  profile_pic_big?: string;
+  readonly last_login?: string;
+  job_title?: string;
+  location?: string;
+  birthday?: string;
+  about?: string;
+  public_email?: string;
   public_mobile_phone?: any;
-  created_at: string;
-  updated_at: string;
+  readonly created_at?: string;
+  readonly updated_at?: string;
 }

@@ -1,4 +1,4 @@
-export interface AccountPref {
+export interface Pref {
   id: number;
   app_id: number;
   key: string;

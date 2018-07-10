@@ -5,7 +5,7 @@ import * as Beyond from '@getbeyond/beyond-js';
 
 import { BeyondJS } from '@provider/beyond-js';
 import {
-    AccountPref, Alert,
+    Pref, Alert,
     DayParts, DeveloperAccount, Doc,
     Employee, Job, Location, Role, User
 } from '@interfaces';
@@ -101,10 +101,10 @@ export class BeyondAccountService {
      *
      * @param {string} [key]
      * @param {boolean} [isCore]
-     * @returns {(Observable <AccountPref|AccountPref[]>)}
+     * @returns {(Observable <Pref|Pref[]>)}
      * @memberof BeyondAccountService
      */
-    getPrefs(key?: string, isCore?: boolean): Observable <AccountPref|AccountPref[]> {
+    getPrefs(key?: string, isCore?: boolean): Observable <Pref|Pref[]> {
         return from(this.beyond.account.getPrefs(key, isCore));
     }
 
