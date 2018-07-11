@@ -15,6 +15,6 @@
 | SessionService   |                                                        |   [Docs][1]  |
 | UserService      |                                                        |   [Docs][2]  |
 
-[0]: https://getbeyond.github.io/ngx-services/injectables/BeyondAccountService.html)
-[1]: https://getbeyond.github.io/ngx-services/injectables/BeyondSessionService.html)
-[2]: https://getbeyond.github.io/ngx-services/injectables/BeyondUserService.html)
+ [0]: https://getbeyond.github.io/ngx-services/injectables/BeyondAccountService.html
+ [1]: https://getbeyond.github.io/ngx-services/injectables/BeyondSessionService.html
+ [2]: https://getbeyond.github.io/ngx-services/injectables/BeyondUserService.html
