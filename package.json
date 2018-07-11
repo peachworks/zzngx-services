@@ -11,7 +11,7 @@
   },
   "scripts": {
     "build": "npm run test && node tools/build",
-    "docs": "compodoc src -s -p tsconfig.json --hideGenerator --theme 'postmark'",
+    "docs": "compodoc src -p tsconfig.json --hideGenerator --theme 'postmark' -d docs --disablePrivate --disableLifeCycleHooks --disableInternal",
     "lint": "tslint --project tsconfig.json 'src/**/*.ts'",
     "lint:fix": "tslint --fix --project tsconfig.json 'src/**/*.ts'",
     "test": "npm run lint && npm run test:unit",
