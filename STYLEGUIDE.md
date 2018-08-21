@@ -178,16 +178,31 @@ An `<svg>` root element is detected as an SVG element automatically, without the
 ```js
 import { CommonModule } from '@angular/common';
 ```
-Removes or recreates a portion of the DOM tree based on the showSection expression.
+Removes or recreates a portion of the DOM tree based on the showSection expression. 
+ngIf is compiled down to ng-template wrapped around the element where ngIf first existed.
+
 ```html
-<section *ngIf="showSection"> 
+<section *ngIf="showSection"></section>
+	
+<ng-template [ngIf]="showSection">
+  <section></section>
+</ng-template>
 ```
 
-Turns the li element and its contents into a template, and uses that to instantiate a view for each item in list.
+Notice ng-template's ngIf has brackets. Angular supports only one structural directive on an element (i.e ngIf, ngFor).
+
+ngFor turns the li element and its contents into a template, and uses that to instantiate a view for each item in list. Using ngIf and ngFor on the same element would throw and error. Instead, wrap the ngFor with and ng-template using the bracket syntax for ngIf.
+
 ```html
 <li *ngFor="let item of list">  
-```
 
+<li *ngIf="showList" *ngFor="let item of list"> // Error!!!
+
+// Correct way
+<ng-template [ngIf]="showList">
+  <li *ngFor="let item of list"> 
+</ng-template>
+```
 
 Conditionally swaps the contents of the div by selecting one of the embedded templates based on the current value of conditionExpression.
 ```html
@@ -221,13 +236,61 @@ import { ReactiveFormsModule } from '@angular/forms';
 ```
 
 Provides two-way data-binding, parsing, and validation for form controls.
+
+```js
+public formGroup: FormGroup;
+
+constructor(
+  private fb: FormBuilder
+) {}
+
+ngOnInit() {
+  this.formGroup = this.fb.group({
+    name: null
+  })
+}
+```
+
 ```html
-<input type="text" [formControl]="name">
+<div [formGroup]="formGroup">
+  <input type="text" formControlName="name">
+</div>
+```
+
+You can bind an object to a Select input in ReactiveForms using ngValue and compareWith.
+
+```js
+
+public items: any[] = [
+  {
+    id: 1,
+    name: 'foo'
+  },
+  {
+    id: 2,
+    name: 'bar'
+  }
+];
+
+compareFn(optionOne, optionTwo) : boolean {
+  return optionOne.id === optionTwo.id;
+}
+
+```
+
+```html
+<select formControlName="name" [compareWith]="compareFn">
+  <option [value]="null">Select an option</option>
+  <option *ngFor="let item of items" [ngValue]="item"></option>
+</select>
 ```
 
 ### Useful links:
 - #### Docs: https://angular.io/guide/reactive-forms
 - #### Full example / guide: https://malcoded.com/posts/angular-fundamentals-reactive-forms
+- #### Select Input Docs: https://angular.io/api/forms/SelectControlValueAccessor#caveat-option-selection
+- #### compareWith Overview: https://netbasal.com/understanding-the-comparefn-input-in-angular-v4-4a401ef4fc4c
+
 
 ## CLASS DECORATORS
 ```js
@@ -378,7 +441,7 @@ Called after the constructor, initializing input properties, and the first call 
 ```js
 ngOnInit() { ... }  
 ```
-Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
+Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check. 
 ```js
 ngDoCheck() { ... } 
 ```
@@ -423,6 +486,92 @@ Sets or overrides the provider for MyService to the myFactory factory function.
 
 ### Useful links:
 - #### Docs: https://angular.io/guide/dependency-injection
+
+## COMPONENT COMMUNICATION
+
+Unidirectional data flow is a major concept in modern JS frameworks.
+Components are categorized as either smart components or presentation components. Smart components should interact with services/stores and pass data to presentation components. If events from presentation components need to be communicated to other presentation components, the preferred route is to communicate to the parent smart component using a service.
+
+This may seem like a trivial example that could be achieved with inputs and outputs, but as your component hierarchy grows, it becomes cumbersome to handle passing data up and down components.
+
+Service: Holds a subject that the parent smart component will create a subscription and the presentation components will publish an event. 
+
+Best practices:
+
+- only expose subjects as observables, this allows the implementation details to only be defined in the service. 
+- end observable names with a $ (i.e., myObservable$), easily identifies a property as an observable
+
+```js
+export class MyService {
+  private eventSubject: Subject<{message: string}> = new Subject();
+
+  constructor() {}
+  
+  get event$(): Observable<{message: string}> {
+    this.eventSubject.asObservable();
+  }
+  
+  publishEvent(event): {message: string} {
+    return this.eventSubject.next(event);
+  }
+}
+```
+
+Smart Component: The smart component sets the observable from MyService as a public instance variable to be used in the template.
+
+```js
+export class SmartComponent {
+  public event$: Observable<{message: string} = this.myService.event$;
+
+  constructor(
+    private myService: MyService
+  ) {}
+}
+
+```
+
+The smart component's template is composed of 2 presentation components: one to emit an event to the service and one to receive the event from the smart component.
+
+We are using the async pipe here to manage creating/destroying the subscription, as well as calling change detection and passing down the event to the presentation-bar component.
+
+```html
+<presentation-foo></presentation-foo>
+<presentation-bar [event]="event$ | async"></presentation-bar>
+```
+
+Presentation Foo component: This presentation component is emitting an event that the other presentation components needs to listen to.
+
+```js
+export class PresentationFooComponent {
+  constructor(
+    private myService: MyService
+  ) {}
+  
+  // imagine a click event on button element
+  onButtonClick() {
+    this.myService.publishEvent({ event: 'Hello' });
+  }
+}
+```
+Presentation Bar component: This presentation component is getting passed the latest value from the eventSubject by the smart components subscription to the event$ observable. 
+
+```js
+export class PresentationFooComponent {
+  @Input() event: boolean;
+ 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.event && changes.event.currentValue) {
+      this.doSomething();
+    }  
+  }
+  
+  doSomething() {}
+}
+```
+
+### Useful links:
+- #### Async Pipe: https://angular.io/api/common/AsyncPipe
+- #### Cookbook Component Communication: https://angular.io/guide/component-interaction#parent-and-children-communicate-via-a-service
 
 ## ROUTING AND NAVIGATION
 
