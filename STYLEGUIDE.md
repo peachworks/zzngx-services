@@ -556,7 +556,7 @@ export class PresentationFooComponent {
 Presentation Bar component: This presentation component is getting passed the latest value from the eventSubject by the smart components subscription to the event$ observable. 
 
 ```js
-export class PresentationFooComponent {
+export class PresentationBarComponent {
   @Input() event: boolean;
  
   ngOnChanges(changes: SimpleChanges) {
