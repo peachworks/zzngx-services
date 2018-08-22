@@ -508,7 +508,7 @@ export class MyService {
   constructor() {}
   
   get event$(): Observable<{message: string}> {
-    this.eventSubject.asObservable();
+    return this.eventSubject.asObservable();
   }
   
   publishEvent(event): {message: string} {
@@ -521,7 +521,7 @@ Smart Component: The smart component sets the observable from MyService as a pub
 
 ```js
 export class SmartComponent {
-  public event$: Observable<{message: string} = this.myService.event$;
+  public event$: Observable<{message: string}> = this.myService.event$;
 
   constructor(
     private myService: MyService
